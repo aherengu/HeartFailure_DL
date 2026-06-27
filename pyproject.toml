@@ -1,0 +1,25 @@
+[project]
+name = "heartfailure-dl"
+version = "0.1.0"
+description = "Educational tabular heart-disease classification demo with leakage-safe preprocessing."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+dependencies = [
+    "numpy>=1.26,<3.0",
+    "pandas>=2.2,<3.0",
+    "scikit-learn>=1.5,<2.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.2,<9.0",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+package = false
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
