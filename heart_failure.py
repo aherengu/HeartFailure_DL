@@ -64,7 +64,8 @@ final_model.fit(x_train, y_train, epochs=100, batch_size=32, verbose=0)
 
 # Interactive prediction from user
 def predict_user_input(model, scaler, label_encoders):
-    print("\nPlease answer the following questions:")
+    print("\nEducational demo only. This is not medical advice or a diagnostic tool.")
+    print("Please answer the following questions:")
 
     age = float(input("Age: "))
     sex = input("Sex (Male/Female): ")
@@ -107,9 +108,9 @@ def predict_user_input(model, scaler, label_encoders):
 
     print("\nPrediction result:")
     if prediction >= 0.5:
-        print("⚠️ The model predicts that you **may have heart disease**.")
+        print("Educational model output: higher predicted probability for the positive class. This is not a diagnosis.")
     else:
-        print("✅ The model predicts that you **likely do not have heart disease**.")
+        print("Educational model output: lower predicted probability for the positive class. This is not a diagnosis.")
 
 # Call the prediction function
 predict_user_input(final_model, scaler, label_encoders)
