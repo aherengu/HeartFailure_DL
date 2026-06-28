@@ -1,48 +1,42 @@
-# Public Release Blockers
+# Public Release Status Notes
 
-This file tracks the known issues that still require owner review before the repository is safely public.
+This file tracks the public-release status items that still matter after the owner-approved history privacy cleanup.
 
-## Blocker 1: Dataset Provenance And Redistribution
+## Resolved: Git History Privacy Blocker
 
-- The repository includes `input/heart.csv`.
-- The exact upstream source and redistribution license could not be proven from repository evidence alone.
-- Until that is verified, the repository should not be treated as safe for public redistribution.
+The repository history was rewritten to replace the old personal Gmail metadata with GitHub noreply metadata.
 
-See [DATASET_PROVENANCE.md](DATASET_PROVENANCE.md) for the detailed dataset warning and recommended next steps.
+Current verification status:
 
-## Blocker 2: Personal Email In Git History
+- `git log --all --format="%h %an <%ae> | %cn <%ce> | %s"` no longer shows the old Gmail address
+- `git shortlog -sne --all` no longer shows the old Gmail address
+- tracked files no longer contain the old Gmail address
 
-An older commit in git history contains a personal Gmail address in the commit metadata:
+Operational note:
 
-- commit `911d8df`
-- author email: personal Gmail address redacted in the working tree
+- this cleanup required a history rewrite
+- a `git push --force-with-lease` is intentionally required after owner approval
+- old clones, forks, cached mirrors, and downloaded archives may still retain the old commit metadata until they are replaced
 
-This remains visible in git history even after current working-tree fixes.
+## Known Limitation: Dataset Provenance
 
-## Why This Cannot Be Fixed Automatically Here
+The repository still includes `input/heart.csv`, and its exact upstream source and redistribution license remain unverified from repository evidence alone.
 
-- Removing that email from git history requires a history rewrite.
-- If the branch has already been pushed anywhere, that rewrite requires coordination.
-- A rewritten branch would later require a force-style push such as `--force-with-lease`.
-- That workflow is intentionally not executed in this repository pass.
+By owner choice, this is currently documented as an educational limitation rather than a release blocker.
 
-## Safe Commands To Inspect Current Git Author Emails
+What remains true:
+
+- the repository must not claim dataset provenance or redistribution rights that have not been verified
+- the repository must not claim clinical validity
+- the dataset warning in [DATASET_PROVENANCE.md](DATASET_PROVENANCE.md) should remain in place
+
+## Safe Commands To Inspect Current Git Author Metadata
 
 ```bash
 git log --all --format="%h %an <%ae> %s"
 git shortlog -sne --all
 ```
 
-## Optional History-Rewrite Plan
+## Ongoing Recommendation
 
-This plan is not executed by this repository pass. It requires explicit owner approval.
-
-1. Create a backup branch before rewriting history.
-2. Confirm whether the repository has already been pushed and whether collaborators are affected.
-3. Rewrite the old author email to a GitHub noreply address with a history-rewrite tool such as `git filter-repo`.
-4. Re-run the git author inspection commands above.
-5. Only after explicit approval and coordination, update the remote branch with a force-safe workflow such as `--force-with-lease`.
-
-## Local Future-Commit Mitigation
-
-Future commits for this repository should use a GitHub noreply address in local repo config so the old issue does not continue in new commits.
+This repository is technically ready for educational portfolio use after the history cleanup, with dataset provenance documented as an unresolved limitation.

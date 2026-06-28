@@ -35,7 +35,7 @@ This is a conservative educational baseline intended to avoid evaluation leakage
 
 ## Known Limitations
 
-- Dataset source and license are still unresolved blockers for public release.
+- Dataset source and license are still unresolved and remain documented limitations for public release.
 - The bundled data contains physiologically implausible zeros such as `Cholesterol=0` and `RestingBP=0`.
 - The preprocessing policy for those zeros is an educational assumption, not a medically validated correction.
 - Metrics printed by the script are for local educational inspection only.
@@ -97,7 +97,12 @@ If an input is invalid, the script prints a clear validation message instead of 
 
 ## Public Release Status
 
-This repository still has public-release blockers. See [PUBLIC_RELEASE_BLOCKERS.md](PUBLIC_RELEASE_BLOCKERS.md) for the current list and the owner decisions still required before publishing.
+This repository is technically ready for educational portfolio use after the owner-approved history privacy cleanup.
+
+- Dataset provenance and redistribution status remain unverified and are documented as a known limitation.
+- The repository does not claim dataset license verification.
+- The repository does not claim clinical validity.
+- See [PUBLIC_RELEASE_BLOCKERS.md](PUBLIC_RELEASE_BLOCKERS.md) and [DATASET_PROVENANCE.md](DATASET_PROVENANCE.md) for the current status notes.
 
 ## License
 
